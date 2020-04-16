@@ -52,7 +52,7 @@ app.post("/download", (req, res) => {
             .setVideoStartTime(parseInt(start_time))
             .setVideoDuration(parseInt(length))
             .save("trimmed.mp4", () => {
-              fs.readdirSync(testFolder).forEach((file) => {
+              fs.readdirSync(path.join(__dirname)).forEach((file) => {
                 console.log(file);
               });
               res.download("trimmed.mp4", filename);
