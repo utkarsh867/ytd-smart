@@ -30,11 +30,16 @@ app.post("/download", (req, res) => {
   });
 
   video.pipe(fs.createWriteStream("video.mp4"));
+
   try {
     fs.unlinkSync("trimmed.mp4");
   } catch (e) {
     console.error(e);
   }
+
+  fs.readdirSync(testFolder).forEach((file) => {
+    console.log(file);
+  });
 
   video.on("end", (info) => {
     console.log("Downloaded");
@@ -47,7 +52,9 @@ app.post("/download", (req, res) => {
             .setVideoStartTime(parseInt(start_time))
             .setVideoDuration(parseInt(length))
             .save("trimmed.mp4", () => {
-              console.log("Done downloading");
+              fs.readdirSync(testFolder).forEach((file) => {
+                console.log(file);
+              });
               res.download("trimmed.mp4", filename);
             });
         },
