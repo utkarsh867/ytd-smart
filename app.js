@@ -51,11 +51,15 @@ app.post("/download", (req, res) => {
           video
             .setVideoStartTime(parseInt(start_time))
             .setVideoDuration(parseInt(length))
-            .save(path.join(__dirname, "trimmed.mp4"), () => {
-              fs.readdirSync(path.join(__dirname)).forEach((file) => {
-                console.log(file);
-              });
-              res.download(path.join(__dirname, "trimmed.mp4"), filename);
+            .save(path.join(__dirname, "trimmed.mp4"), (err, files) => {
+              if (err) {
+                console.log(err);
+              } else {
+                fs.readdirSync(path.join(__dirname)).forEach((file) => {
+                  console.log(file);
+                });
+                res.download(path.join(__dirname, "trimmed.mp4"), filename);
+              }
             });
         },
         function (err) {
