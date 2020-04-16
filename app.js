@@ -32,7 +32,7 @@ app.post("/download", (req, res) => {
   video.pipe(fs.createWriteStream("video.mp4"));
 
   try {
-    fs.unlinkSync("trimmed.mp4");
+    fs.unlinkSync(path.join(__dirname, "trimmed.mp4"));
   } catch (e) {
     console.error(e);
   }
@@ -51,11 +51,11 @@ app.post("/download", (req, res) => {
           video
             .setVideoStartTime(parseInt(start_time))
             .setVideoDuration(parseInt(length))
-            .save("trimmed.mp4", () => {
+            .save(path.join(__dirname, "trimmed.mp4"), () => {
               fs.readdirSync(path.join(__dirname)).forEach((file) => {
                 console.log(file);
               });
-              res.download("trimmed.mp4", filename);
+              res.download(path.join(__dirname, "trimmed.mp4"), filename);
             });
         },
         function (err) {
