@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      method="POST"
+      action="/download"
+      style="
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 20px;
+        width: 100%;
+      "
+    >
+      <input type="text" name="url" placeholder="URL" />
+      <input type="text" name="start" placeholder="Start (sec)" />
+      <input type="text" name="length" placeholder="Length (sec)" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
