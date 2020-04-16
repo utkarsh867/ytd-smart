@@ -37,7 +37,7 @@ app.post("/download", (req, res) => {
     console.error(e);
   }
 
-  fs.readdirSync(testFolder).forEach((file) => {
+  fs.readdirSync(path.join(__dirname)).forEach((file) => {
     console.log(file);
   });
 
